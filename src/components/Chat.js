@@ -7,12 +7,11 @@ function Chat() {
   const messagesEndRef = useRef(null);
   const [isLoading, setIsLoading] = useState(false);
   const [lastResponseId, setLastResponseId] = useState(null);
-  const [selectedNum, setSelectedNum] = useState(1); // デフォルト値を1に設定
 
   const handleResetSession = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch('https://jetb-agent-server-281983614239.asia-northeast1.run.app/azure_agent_yamaha_reset/', {
+      const response = await fetch('https://jetb-agent-server-281983614239.asia-northeast1.run.app/azure_agent_reset/', {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
       });
@@ -65,20 +64,14 @@ function Chat() {
     setInput('');
     setIsLoading(true);
 
-    try {
-
-      // selectedNumをintegerとして確実に送信
-      const selectedNumber = Number.isInteger(selectedNum) ? selectedNum : parseInt(selectedNum, 10);
-      console.log('Sending selected_number as integer:', selectedNumber, typeof selectedNumber);
-      
+    try {      
       const requestBody = {
         question: currentInput,
-        user_id: '1',
-        selected_number: selectedNumber
+        user_id: 16,
       };
       console.log('Request body:', requestBody);
 
-      const response = await fetch('https://jetb-agent-server-281983614239.asia-northeast1.run.app/azure_agent_yamaha/', {
+      const response = await fetch('https://jetb-agent-server-281983614239.asia-northeast1.run.app/test_agent/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestBody)
@@ -225,26 +218,13 @@ function Chat() {
     }
   };
 
-  const handleSelectValChange = (value) => {
-    const intValue = parseInt(value, 10);
-    setSelectedNum(intValue);
-    console.log('Selected number (as integer):', intValue, typeof intValue);
-  };
 
-  console.log('Selected number:', selectedNum);
 
   return (
     <>
       <div className="chat-window">
         <div className="message user">
-          <p>こんにちは！どの製品についてのご質問ですか？<br />○○の場合は1、○○の場合は2、○○の場合は3、○○の場合は4、○○の場合は5を選択してください</p>
-          <select value={selectedNum} onChange={e => handleSelectValChange(e.target.value)} id="selected_number">
-            <option value={1}>1</option>
-            <option value={2}>2</option>
-            <option value={3}>3</option>
-            <option value={4}>4</option>
-            <option value={5}>5</option>
-          </select>
+          <p>こんにちは！AIエージェントです</p>
         </div>
         {messages.map((msg) => (
           <div key={msg.id} className={`message ${msg.sender}`}>
