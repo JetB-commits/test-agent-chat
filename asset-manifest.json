@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.js": "/static/js/main.21c72a87.js",
-    "main.css": "/static/css/main.27a0d28b.css",
-    "index.html": "/index.html",
-    "main.27a0d28b.css.map": "/static/css/main.27a0d28b.css.map"
+    "main.js": "/test-agent-chat/static/js/main.21c72a87.js",
+    "main.css": "/test-agent-chat/static/css/main.27a0d28b.css",
+    "index.html": "/test-agent-chat/index.html",
+    "main.27a0d28b.css.map": "/test-agent-chat/static/css/main.27a0d28b.css.map"
   },
   "entrypoints": [
     "static/js/main.21c72a87.js",
