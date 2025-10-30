@@ -19,7 +19,7 @@ function AzureChat() {
       }
       setMessages([]);
       setLastResponseId(null);
-      alert('セッションがリセットされました。');
+      alert('セッションがリセットされました');
     } catch (error) {
       console.error("Reset session error:", error);
       alert('セッションのリセットに失敗しました。');

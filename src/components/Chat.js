@@ -11,9 +11,13 @@ function Chat() {
   const handleResetSession = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch('https://jetb-agent-server-281983614239.asia-northeast1.run.app/azure_agent_reset/', {
-        method: 'GET',
+      const requestBody = {
+        user_id: 16,
+      };
+      const response = await fetch('http://localhost:8001/azure_agent_reset/', {
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(requestBody)
       });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -67,11 +71,11 @@ function Chat() {
     try {      
       const requestBody = {
         question: currentInput,
-        user_id: 16,
+        user_id: 16, //ここを任意のuseridに変える
       };
       console.log('Request body:', requestBody);
 
-      const response = await fetch('https://jetb-agent-server-281983614239.asia-northeast1.run.app/test_agent/', {
+      const response = await fetch('http://localhost:8001/azure_agent/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestBody)
